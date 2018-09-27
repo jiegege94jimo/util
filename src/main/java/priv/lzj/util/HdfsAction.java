@@ -60,7 +60,7 @@ public class HdfsAction {
     }
 
     /**
-     *打开输入流（需入参输出路径，且需预先初始化filesystem），若输出路径存在则追加，若不存在则创建文件
+     *打开输出流（需入参输出路径，且需预先初始化filesystem），若输出路径存在则追加，若不存在则创建文件
      * @param path
      */
     public void openOutputStream(String path){
