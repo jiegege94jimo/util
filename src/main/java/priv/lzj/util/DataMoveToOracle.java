@@ -9,6 +9,11 @@ import java.sql.SQLException;
 
 /**
  * 向oracle插入数据，解决字段过长的问题
+ * 插入流程大致为
+ * 1.初始化连接（加载驱动，获取连接conn）
+ * 2.sql初始化stmt
+ * 3.插入数据
+ * 4.关闭stmt和连接conn
  */
 public class DataMoveToOracle {
     Connection connection = null;
@@ -16,6 +21,10 @@ public class DataMoveToOracle {
     String userName = "arask";
     String password = "arask1234";
     PreparedStatement stmt = null;
+
+    /**
+     * 使用默认的连接信息初始化连接
+     */
     public void initConnection(){
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -28,6 +37,13 @@ public class DataMoveToOracle {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 使用入参的形式初始化连接，格式为（url，用户名，密码）
+     * @param url
+     * @param userName
+     * @param password
+     */
     public void initConnection(String url,String userName,String password){
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -40,6 +56,7 @@ public class DataMoveToOracle {
             e.printStackTrace();
         }
     }
+
     public void initStmt(){
         String sql = "insert into TX_ASR_FLOW_RECORD_LZJ values(?,?)";
         try {
