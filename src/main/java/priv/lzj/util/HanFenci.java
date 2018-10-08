@@ -7,23 +7,25 @@ import java.util.List;
 
 /**
  *汉语言分词，输入待分词的String，返回由,分割的String
+ * @author diaoye
  */
 public class HanFenci {
     public static String participleWord(String text) {
         List<Term> termList = HanLP.segment(text);
         String gang = "/";
-        String res = "";
+        StringBuffer res = new StringBuffer("");
         for (Term txt : termList) {
             int subscrip = txt.toString().indexOf(gang) + 1;
             String word = txt.toString().substring(0, subscrip - 1);
-            if(!word.equals(",")&&!word.equals("，")) {
-                res = res + word + ",";
+            if(!(",").equals(word)&&!("，").equals(word)) {
+                res = res.append(word).append(",");
             }
 
         }
         if(res.length()>0){
-            res = res.substring(0,res.length()-1);
+            res.substring(0,res.length()-1);
+            return res.toString();
         }
-        return res;
+        return res.toString();
     }
 }

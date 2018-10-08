@@ -15,6 +15,7 @@ import java.io.OutputStream;
  * 该类实现了一些基本的hdfs操作，实现大概步骤主要为：
  * 设定config（fs地址，若要追加写入的设置）-->通过config获取fileSystem
  * --> 通过fs（加上读写目录）获取读写流-->实现读写操作-->关闭流-->关闭fileSystem
+ * @author diaoye
  */
 
 public class HdfsAction {
@@ -154,14 +155,5 @@ public class HdfsAction {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        HdfsAction act = new HdfsAction();
-        act.initHdfsFs("hdfs://192.168.122.1:9000");
-        if(act.hdfsFs.exists(new Path("/output/315"))){
-            System.out.println("asssssssss");
-        }
-
     }
 }

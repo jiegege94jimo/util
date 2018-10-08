@@ -32,8 +32,5 @@ object Word2Vec{
     df.show()
     dt.show()
     re.show()
-
-
-
   }
 }

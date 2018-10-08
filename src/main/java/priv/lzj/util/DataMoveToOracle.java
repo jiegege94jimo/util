@@ -14,6 +14,7 @@ import java.sql.SQLException;
  * 2.sql初始化stmt
  * 3.插入数据
  * 4.关闭stmt和连接conn
+ * @author diaoye
  */
 public class DataMoveToOracle {
     Connection connection = null;
@@ -80,11 +81,11 @@ public class DataMoveToOracle {
         }
     }
     public void insertMessage(String message){
-        String sp[] = message.split(",");
+        String []splits = message.split(",");
         try {
             Reader clobReader = new StringReader(message);
-            Reader stringReader = new StringReader(sp[0]);
-            this.stmt.setCharacterStream(1, stringReader, sp[0].length());
+            Reader stringReader = new StringReader(splits[0]);
+            this.stmt.setCharacterStream(1, stringReader, splits[0].length());
             this.stmt.setCharacterStream(2, clobReader, message.length());
             this.stmt.executeUpdate();
         } catch (SQLException e) {
