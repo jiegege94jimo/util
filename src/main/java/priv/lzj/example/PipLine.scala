@@ -1,9 +1,14 @@
+package priv.lzj.example
+
 import org.apache.spark.ml.Pipeline
 import org.apache.spark.ml.clustering.KMeans
 import org.apache.spark.ml.feature.Word2Vec
-import org.apache.spark.sql.{SaveMode, SparkSession}
+import org.apache.spark.sql.SparkSession
 
-object test{
+/**
+  *
+  */
+object PipLine{
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().master("local").appName("pipTest").getOrCreate()
     val testData = spark.createDataFrame(
@@ -17,5 +22,7 @@ object test{
     val pipeline = new Pipeline().setStages(Array(word2Vec,kmeans))
     val model = pipeline.fit(testData)
     model.transform(testData).show()
+
+    spark.stop()
   }
 }
