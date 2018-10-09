@@ -11,6 +11,7 @@ object test{
     val result = HanFenci.participleWord(message)
     return result.split(",")
   }
+
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().appName("udfTest").getOrCreate()
     import spark.implicits._
