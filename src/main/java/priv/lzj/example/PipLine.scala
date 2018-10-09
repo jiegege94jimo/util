@@ -5,6 +5,9 @@ import org.apache.spark.ml.clustering.KMeans
 import org.apache.spark.ml.feature.Word2Vec
 import org.apache.spark.sql.SparkSession
 
+/**
+  *
+  */
 object PipLine{
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().master("local").appName("pipTest").getOrCreate()
